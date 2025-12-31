@@ -7,6 +7,7 @@ from rclpy.node import Node
 from std_msgs.msg import Int16
 
 class Monitor(Node):
+    
     def __init__(self):
         super().__init__('monitor')
         self.subscription = self.create_subscription(
@@ -22,6 +23,7 @@ class Monitor(Node):
         else:
             self.get_logger().info(f'Temperature: {msg.data} C')
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = Monitor()
@@ -31,6 +33,7 @@ def main(args=None):
         pass
     node.destroy_node()
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

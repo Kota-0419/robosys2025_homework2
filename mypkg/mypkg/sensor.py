@@ -12,10 +12,9 @@ from std_msgs.msg import Int16
 class Sensor(Node):
     def __init__(self):
         super().__init__('sensor')
-        self.publisher_ = self.create_publisher(Int16, 'temperature', 10)        
+        self.publisher_ = self.create_publisher(Int16, 'temperature', 10)
         timer_period = 1.0
         self.timer = self.create_timer(timer_period, self.timer_callback)
-
 
     def timer_callback(self):
         msg = Int16()
