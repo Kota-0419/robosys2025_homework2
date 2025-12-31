@@ -40,7 +40,7 @@ Launchファイルを使用することで、sensorノードとmonitorノード�
 ```bash
 ros2 launch mypkg talk_listen.launch.py
 ```
-実行後、Ctrl + C で終了します。
+実行後、`Ctrl + C`で終了します。
 
 ### 2. パラメータの設定
 monitorノードは、警告を出す温度のしきい値を変更できます（デフォルトは30℃）。
