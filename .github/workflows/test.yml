@@ -1,19 +1,31 @@
 name: test
-on: push
+
+on:
+  push:
+  pull_request:
+
 jobs:
   test:
     runs-on: ubuntu-22.04
     container: ros:humble-ros-base-jammy
+
     steps:
       - uses: actions/checkout@v3
+
       - name: build and test
         run: |
-          apt-get update && apt-get install -y rsync
-          rsync -av ./ /root/src/
-          cd /root
-          . /opt/ros/humble/setup.sh
+          apt-get update
+          apt-get install -y rsync
+
+          mkdir -p /root/ros2_ws/src
+          rsync -av ./ /root/ros2_ws/src/robosys2025_homework2/
+
+          cd /root/ros2_ws
           rosdep update
           rosdep install -i --from-path src --rosdistro humble -y
           colcon build --symlink-install
+          source install/setup.bash
+
           colcon test
-          colcon test-result
+
+          bash -xv src/robosys2025_homework2/test.bash /root
