@@ -26,7 +26,7 @@ class Sensor(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = Sensor()
-    
+
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
