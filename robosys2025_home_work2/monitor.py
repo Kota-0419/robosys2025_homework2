@@ -4,7 +4,7 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int16
+from std_msgs.msg import Int16, Bool
 
 
 class Monitor(Node):
@@ -12,28 +12,32 @@ class Monitor(Node):
         super().__init__('monitor')
         self.declare_parameter('threshold', 30)
 
+        self.pub = self.create_publisher(Bool, 'alert', 10)
+
         self.sub = self.create_subscription(
             Int16, 'temperature', self.cb, 10
         )
 
     def cb(self, msg):
-        threshold_param = self.get_parameter('threshold')
-        limit = threshold_param.get_parameter_value().integer_value
-
-        self.get_logger().info(f'Temperature: {msg.data} C')
-
+        limit = self.get_parameter('threshold').get_parameter_value().integer_value
+        
+        alert = Bool()
         if msg.data > limit:
             self.get_logger().warn(f'ALERT: Too Hot! ({msg.data} C)')
+            alert.data = True
+        else:
+            alert.data = False
+            
+        self.pub.publish(alert)
 
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
+    rclpy.init()
     node = Monitor()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
-    node.destroy_node()
     rclpy.shutdown()
 
 
