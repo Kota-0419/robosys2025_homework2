@@ -38,7 +38,7 @@ Launchファイルを使用することで、sensorノードとmonitorノード�
 ※事前にビルドとsource（`source install/setup.bash`）が必要です。
 
 ```bash
-ros2 launch mypkg talk_listen.launch.py
+ros2 launch robosys2025_home_work2 talk_listen.launch.py
 ```
 実行後、`Ctrl + C`で終了します。
 
@@ -48,7 +48,7 @@ monitorノードは、警告を出す温度のしきい値を変更できます�
 ### 例：25℃で警告を出したい場合
 
 ```bash
-ros2 run mypkg monitor --ros-args -p threshold:=25
+ros2 run robosys2025_home_work2 monitor --ros-args -p threshold:=25
 ```
 
 ### 3. 個別に実行する場合
@@ -57,13 +57,13 @@ ros2 run mypkg monitor --ros-args -p threshold:=25
 ### ターミナル1（受信側）
 
 ```bash
-ros2 run mypkg monitor
+ros2 run robosys2025_home_work2 monitor
 ```
 
 ### ターミナル2（送信側）
 
 ```bash
-ros2 run mypkg sensor
+ros2 run robosys2025_home_work2 sensor
 ```
 
 ## ライセンス
