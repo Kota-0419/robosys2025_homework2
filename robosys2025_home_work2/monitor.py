@@ -4,11 +4,14 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int16, Bool
+from std_msgs.msg import Bool, Int16
 
 
 class Monitor(Node):
+    """Monitor class to check temperature."""
+
     def __init__(self):
+        """Initialize the node."""
         super().__init__('monitor')
         self.declare_parameter('threshold', 30)
 
@@ -19,19 +22,22 @@ class Monitor(Node):
         )
 
     def cb(self, msg):
-        limit = self.get_parameter('threshold').get_parameter_value().integer_value
-        
+        """Listen to the temperature topic."""
+        limit = self.get_parameter(
+            'threshold').get_parameter_value().integer_value
+
         alert = Bool()
         if msg.data > limit:
             self.get_logger().warn(f'ALERT: Too Hot! ({msg.data} C)')
             alert.data = True
         else:
             alert.data = False
-            
+
         self.pub.publish(alert)
 
 
 def main():
+    """Run the main loop."""
     rclpy.init()
     node = Monitor()
     try:
