@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'mypkg'
+package_name = 'robosys2025_home_work2'
 
 setup(
     name=package_name,
@@ -23,8 +23,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'sensor = mypkg.sensor:main',
-            'monitor = mypkg.monitor:main',
+            'sensor = robosys2025_home_work2.sensor:main',
+            'monitor = robosys2025_home_work2.monitor:main',
         ],
     },
 )
