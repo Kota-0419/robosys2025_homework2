@@ -36,12 +36,18 @@ class Monitor(Node):
         self.pub.publish(alert)
 
 
-def main():
-    """Run the main loop."""
-    rclpy.init()
+def main(args=None):
+    rclpy.init(args=args)
     node = Monitor()
+    
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
-    rclpy.shutdown()
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()

@@ -3,7 +3,7 @@ import os
 
 from setuptools import setup
 
-package_name = 'robosys2025_home_work2'
+package_name = 'robosys2025_homework2'
 
 setup(
     name=package_name,
@@ -24,8 +24,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'sensor = robosys2025_home_work2.sensor:main',
-            'monitor = robosys2025_home_work2.monitor:main',
+            'sensor = robosys2025_homework2.sensor:main',
+            'monitor = robosys2025_homework2.monitor:main',
         ],
     },
 )

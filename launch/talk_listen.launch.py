@@ -7,11 +7,11 @@ import launch_ros.actions
 def generate_launch_description():
 
     sensor = launch_ros.actions.Node(
-        package='robosys2025_home_work2',
+        package='robosys2025_homework2',
         executable='sensor',
     )
     monitor = launch_ros.actions.Node(
-        package='robosys2025_home_work2',
+        package='robosys2025_homework2',
         executable='monitor',
     )
 

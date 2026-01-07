@@ -1,6 +1,6 @@
 # robosys2025-home-work2
 
-![test](https://github.com/Kota-0419/robosys2025-home-work2/actions/workflows/test.yml/badge.svg)
+![test](https://github.com/Kota-0419/robosys2025-homework2/actions/workflows/test.yml/badge.svg)
 
 ROS 2を用いて、温度データの送受信と監視を行うパッケージです。
 
@@ -16,7 +16,7 @@ ROS 2を用いて、温度データの送受信と監視を行うパッケージ
 ## インストール
 ```bash
 cd ~/ros2_ws/src
-git clone [https://github.com/Kota-0419/robosys2025-home-work2.git](https://github.com/Kota-0419/robosys2025-home-work2.git)
+git clone [https://github.com/Kota-0419/robosys2025-homework2.git](https://github.com/Kota-0419/robosys2025-homework2.git)
 cd ~/ros2_ws
 colcon build --symlink-install
 source install/setup.bash
@@ -38,7 +38,7 @@ Launchファイルを使用することで、sensorノードとmonitorノード�
 ※事前にビルドとsource（`source install/setup.bash`）が必要です。
 
 ```bash
-ros2 launch robosys2025_home_work2 talk_listen.launch.py
+ros2 launch robosys2025_homework2 talk_listen.launch.py
 ```
 実行後、`Ctrl + C`で終了します。
 
@@ -48,7 +48,7 @@ monitorノードは、警告を出す温度のしきい値を変更できます�
 ### 例：25℃で警告を出したい場合
 
 ```bash
-ros2 run robosys2025_home_work2 monitor --ros-args -p threshold:=25
+ros2 run robosys2025_homework2 monitor --ros-args -p threshold:=25
 ```
 
 ### 3. 個別に実行する場合
@@ -57,13 +57,13 @@ ros2 run robosys2025_home_work2 monitor --ros-args -p threshold:=25
 ### ターミナル1（受信側）
 
 ```bash
-ros2 run robosys2025_home_work2 monitor
+ros2 run robosys2025_homework2 monitor
 ```
 
 ### ターミナル2（送信側）
 
 ```bash
-ros2 run robosys2025_home_work2 sensor
+ros2 run robosys2025_homework2 sensor
 ```
 
 ## ライセンス

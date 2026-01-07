@@ -9,7 +9,7 @@ cd $dir/ros2_ws
 colcon build
 source install/setup.bash
 
-ros2 launch robosys2025_home_work2 talk_listen.launch.py > /dev/null 2>&1 &
+ros2 launch robosys2025_homework2 talk_listen.launch.py > /dev/null 2>&1 &
 
 sleep 5
 
