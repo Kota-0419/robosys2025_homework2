@@ -24,8 +24,8 @@ jobs:
           cd /root/ros2_ws
           rosdep update
           rosdep install -i --from-path src --rosdistro humble -y
-          colcon build --symlink-install
 
+          colcon build --symlink-install
           source install/setup.bash
 
           colcon test --event-handlers console_direct+
