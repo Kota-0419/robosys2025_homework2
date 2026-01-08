@@ -28,6 +28,6 @@ jobs:
 
           source install/setup.bash
 
-          colcon test
+          colcon test --event-handlers console_direct+
 
           bash -xv src/robosys2025_homework2/test.bash /root
