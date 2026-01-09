@@ -8,26 +8,20 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     container: ros:humble-ros-base-jammy
-
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: build and test
-        shell: bash
+      - name: Build and Test
         run: |
-          apt-get update
-          apt-get install -y rsync
-
-          mkdir -p /root/ros2_ws/src
-          rsync -av ./ /root/ros2_ws/src/robosys2025_homework2/
-
-          cd /root/ros2_ws
-          rosdep update
-          rosdep install -i --from-path src --rosdistro humble -y
-
+          . /opt/ros/humble/setup.sh
           colcon build --symlink-install
+          colcon test
+          colcon test-result --verbose
+
+          colcon test-result --verbose
+
+      - name: Run functional test
+        run: |
+          . /opt/ros/humble/setup.sh
           source install/setup.bash
-
-          colcon test --event-handlers console_direct+
-
-          bash -xv src/robosys2025_homework2/test.bash /root
+          ./test/test.bash $(pwd)
