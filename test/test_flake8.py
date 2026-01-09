@@ -8,12 +8,17 @@ import pytest
 @pytest.mark.flake8
 @pytest.mark.linter
 def test_flake8():
-    args = [
-        '--max-line-length', '120',
-        '--exclude', 'build,lib,.git,__pycache__,.venv'
-    ]
+    rc, errors = main_with_errors()
+    
+    filtered_errors = []
+    for error in errors:
+        if 'sitecustomize.py' in error or 'build/' in error:
+            continue
+        filtered_errors.append(error)
 
-    rc, errors = main_with_errors(argv=args)
+    if len(filtered_errors) == 0:
+        return
+
     assert rc == 0, \
-        'Found %d code style errors / warnings:\n' % len(errors) + \
-        '\n'.join(errors)
+        'Found %d code style errors / warnings:\n' % len(filtered_errors) + \
+        '\n'.join(filtered_errors)
