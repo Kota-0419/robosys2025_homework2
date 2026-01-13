@@ -9,7 +9,7 @@ import pytest
 @pytest.mark.linter
 def test_flake8():
     rc, errors = main_with_errors()
-    
+
     filtered_errors = []
     for error in errors:
         if 'sitecustomize.py' in error or 'build/' in error:
