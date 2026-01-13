@@ -14,7 +14,7 @@ NODE_PID=$!
 
 sleep 5
 
-ros2 topic echo /temperature --once --timeout 5 > /tmp/output.log
+timeout 5 ros2 topic echo /sensor > /tmp/output.log
 
 cat /tmp/output.log
 
