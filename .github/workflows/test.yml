@@ -23,5 +23,5 @@ jobs:
       - name: Run functional test
         run: |
           . /opt/ros/humble/setup.sh
-          source install/setup.bash
+          . install/setup.sh
           ./test/test.bash $(pwd)
