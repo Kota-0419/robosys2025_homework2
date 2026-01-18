@@ -9,22 +9,22 @@ ng () {
 
 res=0
 
-# あなたの環境（Humble）に合わせて変更
+# 【追加】Pythonの出力をバッファリングさせない（すぐに表示させる）設定
+export PYTHONUNBUFFERED=1
+
 source /opt/ros/humble/setup.bash
 
-# パッケージをビルド（あなたのパッケージ名を指定）
+# パッケージをビルド
 colcon build --symlink-install --packages-select robosys2025_homework2 || ng "$LINENO"
 source install/setup.bash
 
-# ノードを10秒間実行して、出力をログファイルに保存
-# （以前のログで ros2 run robosys2025_homework2 talker を実行していたため）
+# ノードを起動（バックグラウンドではなくtimeoutで実行）
 timeout 10 ros2 run robosys2025_homework2 talker > /tmp/robosys2025_homework2.log 2>&1 || true
 
-# ログを表示（デバッグ用）
+# ログの中身を確認（デバッグ用）
 cat /tmp/robosys2025_homework2.log
 
-# ログの中に "Publishing" という文字が含まれているかカウント
-# （ログ出力例: [INFO] ...: Publishing: 22 C）
+# "Publishing" という文字が含まれているかカウント
 count=$(grep -c "Publishing" /tmp/robosys2025_homework2.log)
 
 # 1回以上出力されていればOK
