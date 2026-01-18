@@ -19,7 +19,7 @@ colcon build --symlink-install --packages-select robosys2025_homework2 || ng "$L
 source install/setup.bash
 
 # ノードを起動（バックグラウンドではなくtimeoutで実行）
-timeout 10 ros2 run robosys2025_homework2 talker > /tmp/robosys2025_homework2.log 2>&1 || true
+timeout 10 ros2 run robosys2025_homework2 sensor > /tmp/robosys2025_homework2.log 2>&1 || true
 
 # ログの中身を確認（デバッグ用）
 cat /tmp/robosys2025_homework2.log
