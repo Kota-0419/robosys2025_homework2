@@ -7,21 +7,33 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
+    # 2の環境（コンテナ）を維持
     container: ros:humble-ros-base-jammy
     steps:
       - uses: actions/checkout@v4
 
       - name: Build and Test
+        shell: bash
         run: |
+          # ROS 2のセットアップ（コンテナ内で必須）
           . /opt/ros/humble/setup.sh
+
+          # 1を参考に、ワークスペースを作成してファイルをコピー
+          # ディレクトリ名はリポジトリ名に合わせています
+          mkdir -p ~/ros2_ws/src/robosys2025_homework2
+          cp -rf ./* ~/ros2_ws/src/robosys2025_homework2/
+          
+          # テストスクリプト等に実行権限を付与（これが失敗原因の可能性大）
+          chmod +x ~/ros2_ws/src/robosys2025_homework2/test/test.bash
+
+          # ワークスペースに移動してビルド
+          cd ~/ros2_ws
           colcon build --symlink-install
+          
+          # テスト実行（colcon test）
           colcon test
           colcon test-result --verbose
 
-          colcon test-result --verbose
-
-      - name: Run functional test
-        run: |
-          . /opt/ros/humble/setup.sh
+          # ワークスペースの環境変数を読み込んで、自作のテストスクリプトを実行
           . install/setup.sh
-          ./test/test.bash $(pwd)
+          bash src/robosys2025_homework2/test/test.bash
