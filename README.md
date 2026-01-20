@@ -60,3 +60,7 @@ ros2 run robosys2025_homework2 sensor
 ## ライセンス
 * このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
 * ©2025 Kota Matsura
+
+## 謝辞
+*このパッケージの構成や通信の仕組み、テスト方法は、千葉工業大学 ロボットシステム学(2025)の講義資料を参考にしています。
+(https://github.com/ryuichiueda/slides_marp/tree/master/robosys2025)
